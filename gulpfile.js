@@ -212,6 +212,13 @@ gulp.task('fonts', function() {
     .pipe(browserSync.stream());
 });
 
+//Fontawesome File Moving
+gulp.task('icons', function() {
+    return gulp.src(config.bowerDir + '/font-awesome/fonts/**.*')
+        .pipe(gulp.dest(path.dist+'fonts'))
+        .pipe(browserSync.stream());
+});
+
 // ### Images
 // `gulp images` - Run lossless compression on all the images.
 gulp.task('images', function() {
@@ -258,6 +265,7 @@ gulp.task('watch', function() {
   gulp.watch([path.source + 'styles/**/*'], ['styles']);
   gulp.watch([path.source + 'scripts/**/*'], ['jshint', 'scripts']);
   gulp.watch([path.source + 'fonts/**/*'], ['fonts']);
+  gulp.watch([path.source + 'fonts/**/*'], ['fonts', 'icons']);
   gulp.watch([path.source + 'images/**/*'], ['images']);
   gulp.watch(['bower.json', 'assets/manifest.json'], ['build']);
 });
@@ -268,7 +276,7 @@ gulp.task('watch', function() {
 gulp.task('build', function(callback) {
   runSequence('styles',
               'scripts',
-              ['fonts', 'images'],
+              ['fonts', 'icons', 'images'],
               callback);
 });
 
