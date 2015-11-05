@@ -17,6 +17,6 @@
     }
   },
   "config": {
-    "devUrl": "http://localhost/td"
+    "devUrl": "http://localhost/enter_url_in_manifest_json"
   }
 }
